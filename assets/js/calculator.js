@@ -174,6 +174,7 @@ function takeAction(){
         firstNumber = "";
         secondNumber = "";
         calcInput.value = "";
+        operatorSymbl = "";
         resultProcess.innerText = 0;
         // calcInput.focus();
     }
