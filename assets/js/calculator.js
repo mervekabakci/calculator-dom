@@ -10,11 +10,9 @@ themeButton.addEventListener("click", function(){
     if(isDark) {
         this.classList.add("darkButton");
         localStorage.isDarkMode = true;
-        console.log('dark mode çalıştı');
     } else {
         this.classList.remove("darkButton");
         localStorage.isDarkMode = false;
-        console.log('light mode çalıştı');
     }
 });
 if(localStorage.isDarkMode === 'true'){
@@ -85,8 +83,6 @@ calcInput.addEventListener("keypress", Validate);
 
 //işlemler 
 let operatorClicked = false;
-let lastClickOperator = "";
-
 
 const calcButtonList = document.querySelectorAll(".calcButton");
 const numberButtons = document.querySelectorAll(".number");
@@ -108,16 +104,13 @@ function divideBy(num1, num2){
 }
 function operator(symbol, num1, num2){
     if(symbol === "+"){
-        console.log("+ : " + symbol, num1, num2)
+        // console.log("+ : " + symbol, num1, num2)
         return additionBy(num1, num2);
     }else if(symbol === "-"){
-        console.log("- : " + symbol, num1, num2)
         return subtactBy(num1, num2);
     }else if(symbol === "*"){
-        console.log("+* : " + symbol, num1, num2)
         return multiplyBy(num1, num2);
     }else if(symbol === "/"){
-        console.log("/ : " + symbol, num1, num2)
         return divideBy(num1, num2);
     }
 }
