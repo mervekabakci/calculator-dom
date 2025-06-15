@@ -74,6 +74,11 @@ dialog {
   justify-content: center;
   flex-direction: column;
   gap: 50px;
+  @media screen and (max-width: 991.98px) {
+    max-width: 85%;
+    height: auto;
+    min-height: 300px;
+  }
   .closeDialog {
     height: 45px;
     min-width: 70px;
@@ -237,8 +242,8 @@ dialog {
     align-items: center;
     justify-content: center;
     line-height: 20px;
-    @media screen and (max-width:991.98px) {
-        font-size: 20px;
+    @media screen and (max-width: 991.98px) {
+      font-size: 20px;
     }
     @media screen and (min-width: 992px) {
       transition: all 0.3s linear;
