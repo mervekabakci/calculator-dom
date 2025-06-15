@@ -164,7 +164,7 @@ function takeAction(){
         resultProcess.innerText = firstNumber;
         resultProcess.innerText += symbol;
         calcInput.value = "";
-        calcInput.focus();
+        // calcInput.focus();
         return;
     }
     if(symbol === "="){
@@ -173,7 +173,7 @@ function takeAction(){
         resultProcess.innerText = operator(operatorSymbl, firstNumber, secondNumber);
         secondNumber = "";
         calcInput.value = "";
-        calcInput.focus();
+        // calcInput.focus();
         firstNumber = Number(resultProcess.innerText);
         operatorClicked = false;
     }
@@ -182,7 +182,7 @@ function takeAction(){
         secondNumber = "";
         calcInput.value = "";
         resultProcess.innerText = 0;
-        calcInput.focus();
+        // calcInput.focus();
     }
 }
 for (const calcButton of calcButtonList){
