@@ -90,6 +90,20 @@ let firstNumber = "";
 let secondNumber = "";
 let operatorSymbl = ""
 
+function handleClear(){
+    firstNumber = "";
+    secondNumber = "";
+    calcInput.value = "";
+    operatorSymbl = "";
+    resultProcess.innerText = 0;
+}
+function handleCalc(){
+    resultProcess.innerText = operator(operatorSymbl, firstNumber, secondNumber);
+    secondNumber = "";
+    calcInput.value = "";
+    firstNumber = Number(resultProcess.innerText);
+    operatorClicked = false;    
+}
 function additionBy(num1, num2){
     return num1 + num2;
 }
@@ -100,31 +114,32 @@ function multiplyBy(num1, num2){
     return num1 * num2;
 }
 function divideBy(num1, num2){
-    return num1 / num2;
+    return num1 !== 0 ? num1 / num2 : "0 sayısı bölünemez";
 }
 function operator(symbol, num1, num2){
-    if(symbol === "+"){
-        // console.log("+ : " + symbol, num1, num2)
-        return additionBy(num1, num2);
-    }else if(symbol === "-"){
-        return subtactBy(num1, num2);
-    }else if(symbol === "*"){
-        return multiplyBy(num1, num2);
-    }else if(symbol === "/"){
-        return divideBy(num1, num2);
+    switch(symbol){
+        case "+" :  return additionBy(num1, num2);
+        case "-" :  return subtactBy(num1, num2);
+        case "*" :  return multiplyBy(num1, num2);
+        case "/" :  return divideBy(num1, num2);
     }
 }
 for(const numberButton of numberButtons){
     numberButton.addEventListener("click", function(){
         lblError.classList.remove("active");
         lblError.innerHTML = "";
+        console.log("blablabla");
         calcInput.value += numberButton.dataset.number;
-        resultProcess.innerText = calcInput.value;
         if(operatorSymbl === ""){
-            return firstNumber = Number(calcInput.value);
+            console.log("resultProcess 1 : " + resultProcess.innerText);
+            firstNumber = Number(calcInput.value);
+            return resultProcess.innerText = firstNumber;
+
         }
         else{
-            return secondNumber = Number(calcInput.value);
+            console.log("resultProcess 2 : " + resultProcess.innerText);
+            secondNumber = Number(calcInput.value);
+            return resultProcess.innerText = firstNumber + operatorSymbl + secondNumber;
         }
     })
 }
@@ -135,7 +150,8 @@ function takeAction(){
     lblError.innerHTML = "";
     const symbol = this.innerText;
     if(symbol === "+" || symbol === "-" || symbol === "*" || symbol === "/"){
-            if(operatorClicked && operatorSymbl === symbol){
+        console.log("asassddd");
+        if(operatorClicked && operatorSymbl === symbol){
             body.append(createDiv);
             body.append(createDialog);
             let dialogChoose = document.querySelector("dialog");
@@ -157,28 +173,16 @@ function takeAction(){
         resultProcess.innerText = firstNumber;
         resultProcess.innerText += symbol;
         calcInput.value = "";
-        // calcInput.focus();
         return;
     }
     if(symbol === "="){
-        console.log(this.innerText);
-        console.log(operatorSymbl);
-        resultProcess.innerText = operator(operatorSymbl, firstNumber, secondNumber);
-        secondNumber = "";
-        calcInput.value = "";
-        // calcInput.focus();
-        firstNumber = Number(resultProcess.innerText);
-        operatorClicked = false;
+        handleCalc();
     }
     else if (symbol === "C"){
-        firstNumber = "";
-        secondNumber = "";
-        calcInput.value = "";
-        operatorSymbl = "";
-        resultProcess.innerText = 0;
-        // calcInput.focus();
+       handleClear();
     }
 }
+
 for (const calcButton of calcButtonList){
     calcButton.addEventListener("click", takeAction)
 }
